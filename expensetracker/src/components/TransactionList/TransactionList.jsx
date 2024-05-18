@@ -54,8 +54,9 @@ export default function TransactionList({
           </div>
         ))}
       </div>
-
-      <div className={styles.pagination}>
+    
+      {currentItems.length !== 0 ? (
+        <div className={styles.pagination}>
         <button
           className={`${styles.pageBtn} ${currentPage === 1 ? styles.disabled : ""}`}
           onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
@@ -74,6 +75,10 @@ export default function TransactionList({
           <BsArrowRight className={styles.arrowIcon} />
         </button>
       </div>
+      ) : (
+        <div className={styles.message}>No Recent Transactions</div>
+      )}
+      
 
       <CustomModal isOpen={isEditOpen} setIsOpen={setIsEditOpen}>
         <ExpenseForm
